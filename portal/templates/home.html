@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Sports Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+    }
+
+    /* Full-width Navbar Styling */
+    header {
+      background: #1e3c72;
+      color: #fff;
+      padding: 30px 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: space-around; /* Changed from space-between to space-around for reduced gaps */
+      font-size: 1.2rem; /* Added this to increase the font size */
+  }
+  
+
+  nav ul li {
+      margin: 0 15px;
+  }
+
+  nav ul li a {
+      text-decoration: none;
+      color: #FFD700;
+      font-weight: bold;
+      transition: color 0.3s ease;
+  }
+
+  nav ul li a:hover {
+      color: #ffdd57;
+  }
+
+  #home {
+
+          background: linear-gradient(135deg, #00ADB5, #1e3c72);
+
+        }
+        @keyframes backgroundSlide {
+          0%   { background-image: url('image1.png'); }
+          50%  { background-image: url('jucseimg.jpg'); }
+          100% { background-image: url('image1.png'); }
+        }
+    
+        @keyframes bounceIn {
+          0%   { transform: scale(0); opacity: 0; }
+          60%  { transform: scale(1.1); opacity: 1; }
+          100% { transform: scale(1); }
+        }
+    
+        .bounceIn {
+          animation: bounceIn 2s ease-out;
+        }
+      </style>
+</head>
+<body>
+  <header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}"class="px-3 py-1 rounded hover:bg-white/20 hover:text-yellow-400" >CSE SPORTS</a></li>
+            <li><a href="{% url 'home' %}" class="px-3 py-1 rounded hover:bg-white/20 hover:text-yellow-400">Home</a></li>
+            <li><a href="{% url 'fixtures' %}" class="px-3 py-1 rounded hover:bg-white/20 hover:text-yellow-400">Fixtures & Results</a></li>
+            <li><a href="{% url 'register' %} " class="px-3 py-1 rounded hover:bg-white/20 hover:text-yellow-400">Register</a></li>
+            <li><a href="{% url 'ranking' %}">Ranking</a></li>
+             <li><a href="{% url 'gallery' %}">Gallery</a></li>
+            <li><a href="https://juniv.edu/department/cse" class="px-3 py-1 rounded hover:bg-white/20 hover:text-yellow-400">About</a></li>
+        </ul>
+    </nav>
+</header>
+    <main class="pt-10 px-5">
+        <section id="home" class="flex flex-col items-center text-center py-32 px-4 bg-black/50 text-white mt- backdrop-blur-lg rounded-xl shadow-lg">
+          <div>
+            <h1 class="text-[2.8rem] md:text-[4.5rem] font-serif text-green-400 mb-3">JU CSE Sports Portal</h1>
+            <h2 class="mt-4 text-lg md:text-xl font-semibold text-red-600 bg-white border-2 border-red-600 rounded-lg inline-block py-3 px-6">OngoingTournament</h2>
+            <h3 class="text-[1.6rem] md:text-[2.2rem] font-medium text-yellow-400 mt-4">Badminton Tournament - 2025 organized by CSE-30 Batch</h3>
+    
+            <a href="{% url 'fixtures' %}">
+              <button class="mt-6 bg-gradient-to-r from-[#00c6ff] to-[#0072ff] text-white text-lg md:text-xl font-bold rounded-lg py-4 px-9 shadow-lg transition-transform hover:scale-110 hover:from-[#0072ff] hover:to-[#00c6ff] active:scale-95 active:shadow-md">
+                Get The Fixture & Team List
+              </button>
+            </a>
+          </div>
+    
+          <!-- Team Counter -->
+          <div id="team-counter" class="text-[1.5rem] md:text-[2rem] text-yellow-400 bg-black/70 py-3 px-6 rounded-lg mt-8 text-center w-fit bounceIn">
+            <h2>Registered Teams </h2>
+            <ul>
+                {% for game in games %}
+                <li>{{ game.name }}: {{ game.team_count }} teams</li>
+                {% endfor %}
+            </ul>
+            
+          </div>
+        </section>
+      </main>
+      <footer class="bg-[#1e3c72] text-white py-6 text-center mt-20">
+        <p class="text-base">&copy; 2024 CSE-30 Batch, JU. All Rights Reserved.</p>
+      </footer>
+    
+      
+</body>
+</html>
