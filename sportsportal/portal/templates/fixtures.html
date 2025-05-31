@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Fixtures</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        header {
+            background: #1e3c72;
+            color: #fff;
+            padding: 30px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+            font-size: 1.2rem;
+        }
+        nav ul li { margin: 0 15px; }
+        nav ul li a {
+            text-decoration: none;
+            color: #FFD700;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover { color: #ffdd57; }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: zoomIn 0.6s ease;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.9); }
+            to { transform: scale(1); }
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+            animation: fadeIn 1s ease;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            animation: fadeIn 1s ease;
+        }
+        table, th, td { border: 1px solid #ddd; }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th { background-color: #0077cc; color: white; }
+        td { background-color: #f4f4f4; }
+        td:hover {
+            background-color: #e6e6e6;
+            transition: background-color 0.3s ease;
+        }
+        .game-selector {
+            text-align: center;
+            margin: 20px 0;
+            animation: fadeIn 1.2s ease;
+        }
+        .game-selector select {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .game-selector button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .game-selector button:hover { background-color: #005da8; }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">CSE SPORTS</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'fixtures' %}">Fixtures & Results</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+            <li><a href="{% url 'ranking' %}">Ranking</a></li>
+            <li><a href="https://juniv.edu/department/cse">About</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <h1>Game Fixtures</h1>
+
+    <div class="game-selector">
+        <form method="GET" action="">
+            <label for="game-select">Choose a Game:</label>
+            <select id="game-select" name="game" onchange="this.form.submit()">
+                <option value="Badminton" {% if game == "Badminton" %}selected{% endif %}>Badminton</option>
+                <option value="Cricket" {% if game == "Cricket" %}selected{% endif %}>Cricket</option>
+                <option value="Football" {% if game == "Football" %}selected{% endif %}>Football</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Fixtures Table -->
+    <h2>{{ game }} Fixtures</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Teams</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fixture in fixtures %}
+            <tr>
+                <td>{{ fixture.date }}</td>
+                <td>{{ fixture.teams }}</td>
+                <td>{{ fixture.result }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="3">No fixtures available for {{ game }}.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Players Table -->
+    <h2>{{ game }} Players</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Image</th>
+                <th>Email</th>
+                <th>Team Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td>{{ player.user.username }}</td>
+                <td>
+                    {% if player.image %}
+                        <img src="{{ player.image.url }}" width="60" height="60" style="border-radius:50%;">
+                    {% else %}
+                        No Image
+                    {% endif %}
+                </td>
+                <td>{{ player.email }}</td>
+                <td>{{ player.team_name }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4">No players registered for {{ game }}.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Managers Table -->
+    <h2>{{ game }} Managers</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Manager</th>
+                <th>Image</th>
+                <th>Team Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for manager in managers %}
+            <tr>
+                <td>{{ manager.user.username }}</td>
+                <td>
+                    {% if manager.image %}
+                        <img src="{{ manager.image.url }}" width="60" height="60" style="border-radius:50%;">
+                    {% else %}
+                        No Image
+                    {% endif %}
+                </td>
+                <td>{{ manager.team_name }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="3">No managers registered for {{ game }}.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
