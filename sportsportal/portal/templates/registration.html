@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Registration - Sports Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-[#1e3c72] to-[#2a5298] text-white min-h-screen">
+
+    <!-- Navbar -->
+    <header class="bg-[#1e3c72] py-5 shadow-md">
+        <nav class="flex justify-center">
+            <ul class="flex space-x-16 text-lg font-semibold">
+                <li><a href="{% url 'home' %}" class="hover:text-yellow-400">CSE SPORTS</a></li>
+                <li><a href="{% url 'home' %}" class="hover:text-yellow-400">Home</a></li>
+                <li><a href="{% url 'fixtures' %}" class="hover:text-yellow-400">Fixtures & Results</a></li>
+                <li><a href="{% url 'register' %}" class="hover:text-yellow-400">Register</a></li>
+                <li><a href="https://juniv.edu/department/cse" class="hover:text-yellow-400">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="py-10 px-5">
+        <h1 class="text-center text-4xl font-bold text-yellow-400 mb-8">Register on the Sports Portal</h1>
+
+        <!-- Registration Type Selector -->
+        <div class="max-w-xl mx-auto mb-10">
+            <label for="registerType" class="block mb-2 text-xl font-bold text-yellow-300">Select Registration Type:</label>
+            <select id="registerType" onchange="toggleForm()" class="w-full p-3 rounded text-black">
+                <option value="" disabled selected>Choose an option</option>
+                <option value="player">Register as Player</option>
+                <option value="manager">Register as Manager</option>
+            </select>
+        </div>
+
+        <!-- Player Form -->
+        <div id="playerForm" class="hidden max-w-2xl mx-auto bg-white bg-opacity-10 p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold mb-5 text-yellow-300">Player Registration</h2>
+            <form method="POST" action="/api/register/player/" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="space-y-4">
+                    <input type="text" name="user" placeholder="Username" class="w-full p-3 rounded text-black" required>
+                    <input type="email" name="email" placeholder="Email" class="w-full p-3 rounded text-black" required>
+                    <input type="text" name="team_name" placeholder="Team Name" class="w-full p-3 rounded text-black" required>
+                    <input type="text" name="game_name" placeholder="Game Name" class="w-full p-3 rounded text-black" required>
+                    <input type="password" name="password" placeholder="Password" class="w-full p-3 rounded text-black" required>
+                    <input type="file" name="image" class="w-full p-3 rounded text-black bg-white" required>
+                </div>
+                <button type="submit" class="mt-5 w-full py-3 bg-yellow-400 text-black font-bold rounded hover:bg-yellow-300">Register</button>
+            </form>
+        </div>
+
+        <!-- Manager Form -->
+        <div id="managerForm" class="hidden max-w-2xl mx-auto bg-white bg-opacity-10 p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold mb-5 text-yellow-300">Manager Registration</h2>
+            <form method="POST" action="/api/register/manager/" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="space-y-4">
+                    <input type="text" name="user" placeholder="Username" class="w-full p-3 rounded text-black" required>
+                    <input type="text" name="team_name" placeholder="Team Name" class="w-full p-3 rounded text-black" required>
+                    <input type="text" name="game_name" placeholder="Game Name" class="w-full p-3 rounded text-black" required>
+                    <input type="password" name="password" placeholder="Password" class="w-full p-3 rounded text-black" required>
+                    <input type="file" name="image" class="w-full p-3 rounded text-black bg-white" required>
+                </div>
+                <button type="submit" class="mt-5 w-full py-3 bg-yellow-400 text-black font-bold rounded hover:bg-yellow-300">Register</button>
+            </form>
+        </div>
+
+    </main>
+
+    <footer class="bg-[#1e3c72] py-5 text-center text-white">
+        &copy; 2025 Sports Portal. All Rights Reserved.
+    </footer>
+
+    <script>
+        function toggleForm() {
+            const type = document.getElementById("registerType").value;
+            document.getElementById("playerForm").style.display = (type === "player") ? "block" : "none";
+            document.getElementById("managerForm").style.display = (type === "manager") ? "block" : "none";
+        }
+    </script>
+</body>
+</html>
