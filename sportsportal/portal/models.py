@@ -76,3 +76,15 @@ class Fixture(models.Model):
 
     def __str__(self):
         return f"{self.teams} ({self.game}) - {self.date}"
+<<<<<<< HEAD
+
+class Ranking(models.Model):
+    name = models.CharField(max_length=100)
+    points = models.IntegerField()
+    sport = models.CharField(max_length=50)
+    is_previous = models.BooleanField(default=False)  # ← Add this line if it's missing
+
+    def __str__(self):
+        return f"{self.name} - {self.sport} ({'Previous' if self.is_previous else 'Recent'})"
+=======
+>>>>>>> 38df760278b7659d258db4ec363ed2a96c91c2e5

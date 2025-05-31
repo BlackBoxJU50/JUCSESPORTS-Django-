@@ -1,4 +1,194 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
+<html>
+<head>
+    <title>Ranking List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #2c4e7c;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #080000;
+            margin-bottom: 40px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 30px;
+            flex-wrap: nowrap;
+            margin: auto;
+            max-width: 1000px;
+        }
+
+        .sport-box {
+            background: rgb(224, 206, 206);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            padding: 20px;
+            width: 280px;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .sport-box:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        .sport-box.clicked {
+            background-color: #2f3f53;
+            color: rgb(230, 230, 230);
+            box-shadow: 0 8px 20px rgba(0,123,255,0.6);
+        }
+
+        .sport-box.clicked ul li {
+            background: rgba(148, 114, 114, 0.3);
+            font-weight: bold;
+        }
+
+        .sport-box h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .details {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .toggle-heading {
+            margin: 10px 0 5px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 4px;
+            cursor: pointer;
+            background: #514040;
+            padding: 5px 8px;
+            border-radius: 4px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 10px 0;
+            display: none;
+        }
+
+        li {
+            background: #0b0000;
+            margin-bottom: 8px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sport Rankings</h1>
+
+    <div class="container">
+        <!-- Badminton -->
+        <div class="sport-box" tabindex="0">
+            <h2>Badminton</h2>
+            <div class="details">
+                <h3 class="toggle-heading">Previous Rankings</h3>
+                <ul class="ranking-list">
+                    {% for ranking in rankings %}
+                        {% if ranking.sport == "Badminton" and ranking.is_previous %}
+                            <li>{{ ranking.name }} - {{ ranking.points }} points</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                <h3 class="toggle-heading">Recent Rankings</h3>
+                <ul class="ranking-list">
+                    {% for ranking in rankings %}
+                        {% if ranking.sport == "Badminton" and not ranking.is_previous %}
+                            <li>{{ ranking.name }} - {{ ranking.points }} points</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Cricket -->
+        <div class="sport-box" tabindex="0">
+            <h2>Cricket</h2>
+            <div class="details">
+                <h3 class="toggle-heading">Previous Rankings</h3>
+                <ul class="ranking-list">
+                    {% for ranking in rankings %}
+                        {% if ranking.sport == "Cricket" and ranking.is_previous %}
+                            <li>{{ ranking.name }} - {{ ranking.points }} points</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                <h3 class="toggle-heading">Recent Rankings</h3>
+                <ul class="ranking-list">
+                    {% for ranking in rankings %}
+                        {% if ranking.sport == "Cricket" and not ranking.is_previous %}
+                            <li>{{ ranking.name }} - {{ ranking.points }} points</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Football -->
+        <div class="sport-box" tabindex="0">
+            <h2>Football</h2>
+            <div class="details">
+                <h3 class="toggle-heading">Previous Rankings</h3>
+                <ul class="ranking-list">
+                    {% for ranking in rankings %}
+                        {% if ranking.sport == "Football" and ranking.is_previous %}
+                            <li>{{ ranking.name }} - {{ ranking.points }} points</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                <h3 class="toggle-heading">Recent Rankings</h3>
+                <ul class="ranking-list">
+                    {% for ranking in rankings %}
+                        {% if ranking.sport == "Football" and not ranking.is_previous %}
+                            <li>{{ ranking.name }} - {{ ranking.points }} points</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle sport box visibility
+        document.querySelectorAll('.sport-box').forEach(box => {
+            box.addEventListener('click', () => {
+                const details = box.querySelector('.details');
+                details.style.display = (details.style.display === 'block') ? 'none' : 'block';
+                box.classList.toggle('clicked');
+            });
+        });
+
+        // Prevent sport box click from triggering when clicking on sub-headings
+        document.querySelectorAll('.toggle-heading').forEach(heading => {
+            heading.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const list = heading.nextElementSibling;
+                list.style.display = (list.style.display === 'block') ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+</html> 
+=======
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,3 +199,4 @@
     <h2>this is raima raima</h2>
 </body>
 </html>
+>>>>>>> 38df760278b7659d258db4ec363ed2a96c91c2e5

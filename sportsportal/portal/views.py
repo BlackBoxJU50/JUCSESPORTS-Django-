@@ -11,7 +11,12 @@ from .models import (
     CricketManager,
     FootballManager,
     Fixture,
+<<<<<<< HEAD
+    Game,
+    Ranking,
+=======
     Game
+>>>>>>> 38df760278b7659d258db4ec363ed2a96c91c2e5
 )
 from django.contrib.auth.models import User
 
@@ -125,7 +130,18 @@ def fixture_view(request):
 def registration_view(request):
     return render(request, 'registration.html')
 
+<<<<<<< HEAD
+def ranking_view(request):
+    rankings = Ranking.objects.all().order_by('-points')  # highest points first
+    return render(request, 'ranking.html', {'rankings': rankings})
+
 # View for Home Page
 def home_view(request):
     games = Game.objects.all()
     return render(request, 'home.html', {'games': games})
+=======
+# View for Home Page
+def home_view(request):
+    games = Game.objects.all()
+    return render(request, 'home.html', {'games': games})
+>>>>>>> 38df760278b7659d258db4ec363ed2a96c91c2e5
