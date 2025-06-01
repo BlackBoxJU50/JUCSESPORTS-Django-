@@ -6,15 +6,11 @@ from .models import (
     BadmintonManager,
     CricketManager,
     FootballManager,
-<<<<<<< HEAD
     Fixture,
     Ranking,
-=======
-    Fixture
->>>>>>> 38df760278b7659d258db4ec363ed2a96c91c2e5
+    GalleryItem,  
 )
 
-# Register each model individually
 @admin.register(BadmintonPlayer)
 class BadmintonPlayerAdmin(admin.ModelAdmin):
     list_display = ('user', 'team_name', 'email')
@@ -42,13 +38,16 @@ class FootballManagerAdmin(admin.ModelAdmin):
 @admin.register(Fixture)
 class FixtureAdmin(admin.ModelAdmin):
     list_display = ('date', 'teams', 'result', 'game')
-<<<<<<< HEAD
 
-# ✅ Updated RankingAdmin to include 'is_previous'
 @admin.register(Ranking)
 class RankingAdmin(admin.ModelAdmin):
-    list_display = ('name', 'points', 'sport', 'is_previous')  # Added is_previous
-    list_filter = ('sport', 'is_previous')  # Optional: filter by sport and type
-    search_fields = ('name',)  # Optional: search by player name
-=======
->>>>>>> 38df760278b7659d258db4ec363ed2a96c91c2e5
+    list_display = ('name', 'points', 'sport', 'is_previous')
+    list_filter = ('sport', 'is_previous')
+    search_fields = ('name',)
+
+
+@admin.register(GalleryItem)
+class GalleryItemAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category', 'created_at')
+    list_filter = ('category',)
+    search_fields = ('title', 'description')
