@@ -1,7 +1,9 @@
 from django.urls import path
 from . import views
-from django.contrib.auth.views import LoginView
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import LoginView, LogoutView
+
+# Import gallery_view explicitly
+from .views import gallery_view
 
 urlpatterns = [
     path('api/register/player/', views.RegisterPlayerView.as_view(), name='register-player'),
@@ -9,9 +11,6 @@ urlpatterns = [
     path('', views.home_view, name='home'),
     path('fixtures/', views.fixture_view, name='fixtures'),
     path('register/', views.registration_view, name='register'),
-<<<<<<< HEAD
-     path('ranking/', views.ranking_view, name='ranking'),
+    path('ranking/', views.ranking_view, name='ranking'),
+    path('gallery/', gallery_view, name='gallery'),  # now gallery_view is defined here
 ]
-=======
-]
->>>>>>> 38df760278b7659d258db4ec363ed2a96c91c2e5

@@ -76,7 +76,7 @@ class Fixture(models.Model):
 
     def __str__(self):
         return f"{self.teams} ({self.game}) - {self.date}"
-<<<<<<< HEAD
+
 
 class Ranking(models.Model):
     name = models.CharField(max_length=100)
@@ -86,5 +86,21 @@ class Ranking(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.sport} ({'Previous' if self.is_previous else 'Recent'})"
-=======
->>>>>>> 38df760278b7659d258db4ec363ed2a96c91c2e5
+
+# portal/models.py
+
+class GalleryItem(models.Model):
+    CATEGORY_CHOICES = [
+        ('current', 'Current Year'),
+        ('previous', 'Previous Year'),
+    ]
+
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    image = models.ImageField(upload_to='gallery/images/', blank=True, null=True)
+    video = models.URLField(blank=True, null=True)  # For YouTube or hosted videos
+    category = models.CharField(max_length=10, choices=CATEGORY_CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title

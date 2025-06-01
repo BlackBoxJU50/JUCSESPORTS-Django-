@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Winners Gallery</title>
+  <script src="img.png"></script>
+  <style>
+    body {
+      background-color: #f3f4f6; /* Tailwind's bg-gray-100 */
+      padding: 1.5rem;
+      font-family: Arial, sans-serif;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 1rem 0;
+    }
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    /* Responsive grid: 1 col mobile, 2 cols md, 3 cols lg */
+    @media (min-width: 640px) {
+      .grid-cols-1 {
+        grid-template-columns: repeat(1, 1fr);
+      }
+      .grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (min-width: 768px) {
+      .grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .card {
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border-radius: 0.5rem;
+      padding: 1rem;
+    }
+    .card-content {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .card img {
+      width: 192px; /* w-48 */
+      height: 192px; /* h-48 */
+      object-fit: cover;
+      border-radius: 0.5rem;
+      flex-shrink: 0;
+    }
+    .card-text {
+      flex: 1;
+    }
+    .card-text h4 {
+      font-weight: 700;
+      font-size: 1.125rem;
+      margin: 0 0 0.25rem;
+    }
+    .card-text p {
+      font-size: 0.875rem;
+      color: #4b5563; /* Tailwind gray-700 */
+      margin: 0;
+    }
+    .video-container {
+      margin-top: 1rem;
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 0.5rem;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Winners Gallery</h2>
+
+  <!-- Current Year -->
+  <section class="mb-8">
+    <h3>🏆 Current Year</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Example current item card -->
+      <div class="card">
+        <div class="card-content">
+          <img src="img.png" alt="Title of item" />
+          <div class="card-text">
+            <h4>Title of Current Item</h4>
+            <p>Description of the current item goes here.</p>
+          </div>
+        </div>
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/example_video_id" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <!-- Repeat above div for each current item -->
+
+    </div>
+  </section>
+
+  <!-- Previous Year -->
+  <section>
+    <h3>📸 Previous Year</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Example previous item card -->
+      <div class="card">
+        <div class="card-content">
+          <img src="img.png" alt="Title of item" />
+          <div class="card-text">
+            <h4>Title of Previous Item</h4>
+            <p>Description of the previous item goes here...</p>
+          </div>
+        </div>
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/example_video_id" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <!-- Repeat above div for each previous item -->
+
+    </div>
+  </section>
+
+</body>
+</html>
