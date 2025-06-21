@@ -8,7 +8,8 @@ from .models import (
     FootballManager,
     Fixture,
     Ranking,
-    GalleryItem,  
+    GalleryItem,
+    InventoryItem,
 )
 
 @admin.register(BadmintonPlayer)
@@ -45,9 +46,15 @@ class RankingAdmin(admin.ModelAdmin):
     list_filter = ('sport', 'is_previous')
     search_fields = ('name',)
 
-
 @admin.register(GalleryItem)
 class GalleryItemAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'created_at')
     list_filter = ('category',)
     search_fields = ('title', 'description')
+
+@admin.register(InventoryItem)
+class InventoryItemAdmin(admin.ModelAdmin):
+    list_display = ('name', 'quantity', 'status', 'sport', 'added_on')
+    list_filter = ('status', 'sport')
+    search_fields = ('name',)
+    ordering = ('-added_on',)

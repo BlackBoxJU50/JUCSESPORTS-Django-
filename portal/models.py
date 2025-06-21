@@ -6,7 +6,7 @@ class BasePlayer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     email = models.EmailField(default="default@example.com")
     team_name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='player_images/', null=True, blank=True)  # ✅ Added image field
+    image = models.ImageField(upload_to='player_images/', null=True, blank=True)  
 
     class Meta:
         abstract = True  # This serves as the base for individual game player tables
@@ -77,7 +77,6 @@ class Fixture(models.Model):
     def __str__(self):
         return f"{self.teams} ({self.game}) - {self.date}"
 
-
 class Ranking(models.Model):
     name = models.CharField(max_length=100)
     points = models.IntegerField()
@@ -87,7 +86,27 @@ class Ranking(models.Model):
     def __str__(self):
         return f"{self.name} - {self.sport} ({'Previous' if self.is_previous else 'Recent'})"
 
-# portal/models.py
+class InventoryItem(models.Model):
+    STATUS_CHOICES = [
+        ('Available', 'Available'),
+        ('In Use', 'In Use'),
+        ('Damaged', 'Damaged'),
+    ]
+
+    SPORT_CHOICES = [
+        ('Badminton', 'Badminton'),
+        ('Cricket', 'Cricket'),
+        ('Football', 'Football'),
+    ]
+
+    name = models.CharField(max_length=100)
+    quantity = models.PositiveIntegerField()
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Available')
+    sport = models.CharField(max_length=20, choices=SPORT_CHOICES, default='Badminton')  # Added sport field
+    added_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.quantity})"
 
 class GalleryItem(models.Model):
     CATEGORY_CHOICES = [

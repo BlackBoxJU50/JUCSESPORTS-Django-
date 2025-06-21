@@ -12,5 +12,7 @@ urlpatterns = [
     path('fixtures/', views.fixture_view, name='fixtures'),
     path('register/', views.registration_view, name='register'),
     path('ranking/', views.ranking_view, name='ranking'),
-    path('gallery/', gallery_view, name='gallery'),  # now gallery_view is defined here
+    path('gallery/', views.gallery_view, name='gallery'),
+    path('inventory/', views.inventory_view, name='inventory'),  
+    path('inventory/delete/<int:item_id>/', views.delete_inventory_item, name='delete_inventory'),  
 ]
