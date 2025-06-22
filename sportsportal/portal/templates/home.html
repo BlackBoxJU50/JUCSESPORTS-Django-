@@ -1,119 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Sports Portal</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      body {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        font-family: 'Roboto', sans-serif;
-        background: linear-gradient(135deg, #1e3c72, #2a5298);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home - Sports Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
     }
 
-    /* Full-width Navbar Styling */
+    /* Navbar */
     header {
       background: #1e3c72;
       color: #fff;
       padding: 30px 20px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+      box-shadow: none; /* no shadow */
+    }
 
-  nav ul {
+    nav ul {
       list-style: none;
       padding: 0;
       margin: 0;
       display: flex;
-      justify-content: space-around; /* Changed from space-between to space-around for reduced gaps */
-      font-size: 1.2rem; /* Added this to increase the font size */
-  }
-  
+      justify-content: space-around;
+      font-size: 1.2rem;
+    }
 
-  nav ul li {
+    nav ul li {
       margin: 0 15px;
-  }
+    }
 
-  nav ul li a {
+    nav ul li a {
       text-decoration: none;
       color: #FFD700;
       font-weight: bold;
       transition: color 0.3s ease;
-  }
+    }
 
-  nav ul li a:hover {
+    nav ul li a:hover {
       color: #ffdd57;
-  }
+    }
 
-  #home {
+    /* Main content */
+    #home {
+      max-width: 900px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 4rem 3rem;
+      border-radius: 1rem;
+      backdrop-filter: blur(6px);
+      margin: 3rem auto; /* center horizontally with margin top and bottom */
+      text-align: center;
+      color: white;
+      flex-grow: 1; /* allow it to expand if needed */
+    }
 
-          background: linear-gradient(135deg, #00ADB5, #1e3c72);
+    #home h1 {
+      font-size: 3rem;
+      font-family: serif;
+      color: #4ade80; /* green-400 */
+      margin-bottom: 1rem;
+    }
 
-        }
-        @keyframes backgroundSlide {
-          0%   { background-image: url('image1.png'); }
-          50%  { background-image: url('jucseimg.jpg'); }
-          100% { background-image: url('image1.png'); }
-        }
-    
-        @keyframes bounceIn {
-          0%   { transform: scale(0); opacity: 0; }
-          60%  { transform: scale(1.1); opacity: 1; }
-          100% { transform: scale(1); }
-        }
-    
-        .bounceIn {
-          animation: bounceIn 2s ease-out;
-        }
-      </style>
+    #home h2 {
+      margin-top: 1rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #dc2626; /* red-600 */
+      background: white;
+      border: 2px solid #dc2626;
+      border-radius: 0.5rem;
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+    }
+
+    #home h3 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-top: 1.5rem;
+      color: #facc15; /* yellow-400 */
+    }
+
+    #home a button {
+      margin-top: 1.5rem;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      font-size: 1.125rem;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      padding: 1rem 2.25rem;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    #home a button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(to right, #0072ff, #00c6ff);
+    }
+
+    #team-counter {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      color: #fbbf24; /* yellow-400 */
+      background: rgba(0,0,0,0.6);
+      padding: 1rem 2rem;
+      border-radius: 0.75rem;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      background: #1e3c72;
+      color: white;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      font-size: 1rem;
+      margin-top: auto;
+    }
+  </style>
 </head>
 <body>
   <header>
     <nav>
-        <ul>
-            <li><a href="{% url 'home' %}"class="px-3 py-1 rounded hover:bg-white/20 hover:text-yellow-400" >CSE SPORTS</a></li>
-            <li><a href="{% url 'home' %}" class="px-3 py-1 rounded hover:bg-white/20 hover:text-yellow-400">Home</a></li>
-            <li><a href="{% url 'fixtures' %}" class="px-3 py-1 rounded hover:bg-white/20 hover:text-yellow-400">Fixtures & Results</a></li>
-            <li><a href="{% url 'register' %} " class="px-3 py-1 rounded hover:bg-white/20 hover:text-yellow-400">Register</a></li>
-            <li><a href="{% url 'ranking' %}">Ranking</a></li>
-             <li><a href="{% url 'gallery' %}">Gallery</a></li>
-            <li><a href="https://juniv.edu/department/cse" class="px-3 py-1 rounded hover:bg-white/20 hover:text-yellow-400">About</a></li>
-        </ul>
+      <ul>
+        <li><a href="{% url 'home' %}" class="px-3 py-1 rounded hover:bg-white/20 hover:text-yellow-400">CSE SPORTS</a></li>
+        <li><a href="{% url 'home' %}" class="px-3 py-1 rounded hover:bg-white/20 hover:text-yellow-400">Home</a></li>
+        <li><a href="{% url 'fixtures' %}" class="px-3 py-1 rounded hover:bg-white/20 hover:text-yellow-400">Fixtures & Results</a></li>
+        <li><a href="{% url 'register' %}" class="px-3 py-1 rounded hover:bg-white/20 hover:text-yellow-400">Register</a></li>
+        <li><a href="{% url 'ranking' %}">Ranking</a></li>
+        <li><a href="{% url 'inventory' %}">Inventory</a></li>
+        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+        <li><a href="{% url 'donation' %}">Donate</a></li>
+        <li><a href="https://juniv.edu/department/cse" class="px-3 py-1 rounded hover:bg-white/20 hover:text-yellow-400">About</a></li>
+      </ul>
     </nav>
-</header>
-    <main class="pt-10 px-5">
-        <section id="home" class="flex flex-col items-center text-center py-32 px-4 bg-black/50 text-white mt- backdrop-blur-lg rounded-xl shadow-lg">
-          <div>
-            <h1 class="text-[2.8rem] md:text-[4.5rem] font-serif text-green-400 mb-3">JU CSE Sports Portal</h1>
-            <h2 class="mt-4 text-lg md:text-xl font-semibold text-red-600 bg-white border-2 border-red-600 rounded-lg inline-block py-3 px-6">OngoingTournament</h2>
-            <h3 class="text-[1.6rem] md:text-[2.2rem] font-medium text-yellow-400 mt-4">Badminton Tournament - 2025 organized by CSE-30 Batch</h3>
-    
-            <a href="{% url 'fixtures' %}">
-              <button class="mt-6 bg-gradient-to-r from-[#00c6ff] to-[#0072ff] text-white text-lg md:text-xl font-bold rounded-lg py-4 px-9 shadow-lg transition-transform hover:scale-110 hover:from-[#0072ff] hover:to-[#00c6ff] active:scale-95 active:shadow-md">
-                Get The Fixture & Team List
-              </button>
-            </a>
-          </div>
-    
-          <!-- Team Counter -->
-          <div id="team-counter" class="text-[1.5rem] md:text-[2rem] text-yellow-400 bg-black/70 py-3 px-6 rounded-lg mt-8 text-center w-fit bounceIn">
-            <h2>Registered Teams </h2>
-            <ul>
-                {% for game in games %}
-                <li>{{ game.name }}: {{ game.team_count }} teams</li>
-                {% endfor %}
-            </ul>
-            
-          </div>
-        </section>
-      </main>
-      <footer class="bg-[#1e3c72] text-white py-6 text-center mt-20">
-        <p class="text-base">&copy; 2024 CSE-30 Batch, JU. All Rights Reserved.</p>
-      </footer>
-    
-      
+  </header>
+
+  <main>
+    <section id="home">
+      <h1>JU CSE Sports Portal</h1>
+      <h2>Ongoing Tournament</h2>
+      <h3>Badminton Tournament - 2025 organized by CSE-30 Batch</h3>
+
+      <a href="{% url 'fixtures' %}">
+        <button>Get The Fixture & Team List</button>
+      </a>
+
+      <div id="team-counter">
+        <h2>Registered Teams</h2>
+        <ul>
+          {% for game in games %}
+            <li>{{ game.name }}: {{ game.team_count }} teams</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 CSE-30 Batch, JU. All Rights Reserved.</p>
+  </footer>
 </body>
 </html>

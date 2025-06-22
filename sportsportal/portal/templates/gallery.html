@@ -1,152 +1,123 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Winners Gallery</title>
-  <script src="img.png"></script>
   <style>
     body {
-      background-color: #f3f4f6; /* Tailwind's bg-gray-100 */
-      padding: 1.5rem;
+      background-color: #fffbff;
       font-family: Arial, sans-serif;
+      padding: 2rem;
+      margin: 0;
+      color: #1f2937;
     }
+
     h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
+      font-size: 2.25rem;
       text-align: center;
-      margin: 1.5rem 0;
+      font-weight: 700;
+      margin-bottom: 2rem;
     }
+
     h3 {
-      font-size: 1.25rem;
+      font-size: 1.75rem;
       font-weight: 600;
-      margin: 1rem 0;
+      margin: 2.5rem 0 1.5rem;
+      border-left: 5px solid #2563eb;
+      padding-left: 0.5rem;
     }
-    .grid {
+
+    /* Gallery container using CSS Grid with auto-fill */
+    .gallery-grid {
       display: grid;
-      gap: 1.5rem;
-    }
-    /* Responsive grid: 1 col mobile, 2 cols md, 3 cols lg */
-    @media (min-width: 640px) {
-      .grid-cols-1 {
-        grid-template-columns: repeat(1, 1fr);
-      }
-      .grid-cols-2 {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .grid-cols-3 {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    @media (min-width: 768px) {
-      .grid-cols-2 {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (min-width: 1024px) {
-      .grid-cols-3 {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    .card {
-      background-color: white;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      border-radius: 0.5rem;
-      padding: 1rem;
-    }
-    .card-content {
-      display: flex;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 1rem;
-      align-items: flex-start;
+      max-width: 1000px;
+      margin: 0 auto;
     }
-    .card img {
-      width: 192px; /* w-48 */
-      height: 192px; /* h-48 */
+
+    .gallery-grid img {
+      width: 100%;
+      height: 140px;
       object-fit: cover;
       border-radius: 0.5rem;
-      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
-    .card-text {
-      flex: 1;
+
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
     }
-    .card-text h4 {
-      font-weight: 700;
-      font-size: 1.125rem;
-      margin: 0 0 0.25rem;
-    }
-    .card-text p {
-      font-size: 0.875rem;
-      color: #4b5563; /* Tailwind gray-700 */
-      margin: 0;
-    }
-    .video-container {
-      margin-top: 1rem;
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
-      height: 0;
-      overflow: hidden;
-      border-radius: 0.5rem;
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 0.5rem;
+
+    section {
+      margin-bottom: 3rem;
     }
   </style>
 </head>
 <body>
 
-  <h2>Winners Gallery</h2>
+  <h2>🏆 Winners Gallery</h2>
+<a href="{% url 'home' %}" class="inline-block mb-8 text-indigo-600 hover:text-indigo-800 font-semibold transition">
+      ← Back to Home
+    </a>
 
-  <!-- Current Year -->
-  <section class="mb-8">
-    <h3>🏆 Current Year</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <!-- Cricket Section -->
+  <section>
+    <h3>🏏 Cricket Champions</h3>
+    <h4>Recent Year</h4>
+    <div class="gallery-grid">
+      <img src="{% static 'images/c1.png' %}" alt="JU Spartans - Recent Year" />
+      <img src="{% static 'images/c3.jpg' %}" alt="JU Warriors - Recent Year" />
+      <img src="{% static 'images/c4.jpg' %}" alt="Cricket Winner" />
+      <!-- Add more cricket recent images here -->
+    </div>
 
-      <!-- Example current item card -->
-      <div class="card">
-        <div class="card-content">
-          <img src="img.png" alt="Title of item" />
-          <div class="card-text">
-            <h4>Title of Current Item</h4>
-            <p>Description of the current item goes here.</p>
-          </div>
-        </div>
-        <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/example_video_id" allowfullscreen></iframe>
-        </div>
-      </div>
-
-      <!-- Repeat above div for each current item -->
-
+    <h4>Previous Year</h4>
+    <div class="gallery-grid">
+      <img src="{% static 'images/c2.jpg' %}" alt="JU Warriors - Previous Year" />
+      <img src="{% static 'images/c5.jpg' %}" alt="Previous Cricket Winner" />
+      <!-- Add more cricket previous images here -->
     </div>
   </section>
 
-  <!-- Previous Year -->
+  <!-- Badminton Section -->
   <section>
-    <h3>📸 Previous Year</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <h3>🏸 Badminton Winners</h3>
+    <h4>Recent Year</h4>
+    <div class="gallery-grid">
+      <img src="{% static 'images/pic1.jpg' %}" alt="Smash Masters - Recent Year" />
+      <img src="{% static 'images/pic3.jpg' %}" alt="Badminton Winner" />
+      <img src="{% static 'images/pic5.jpg' %}" alt="Badminton Winner" />
+      <!-- More recent badminton images -->
+    </div>
 
-      <!-- Example previous item card -->
-      <div class="card">
-        <div class="card-content">
-          <img src="img.png" alt="Title of item" />
-          <div class="card-text">
-            <h4>Title of Previous Item</h4>
-            <p>Description of the previous item goes here...</p>
-          </div>
-        </div>
-        <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/example_video_id" allowfullscreen></iframe>
-        </div>
-      </div>
+    <h4>Previous Year</h4>
+    <div class="gallery-grid">
+      <img src="{% static 'images/pic2.jpg' %}" alt="Shuttle Pros - Previous Year" />
+      <img src="{% static 'images/pic4.jpg' %}" alt="Previous Badminton Winner" />
+      <!-- More previous badminton images -->
+    </div>
+  </section>
 
-      <!-- Repeat above div for each previous item -->
+  <!-- Football Section -->
+  <section>
+    <h3>⚽ Football Champions</h3>
+    <h4>Recent Year</h4>
+    <div class="gallery-grid">
+      <img src="{% static 'images/f1.jpg' %}" alt="Goal Diggers - Recent Year" />
+      <img src="{% static 'images/f3.jpg' %}" alt="Football Winner" />
+      <!-- More recent football images -->
+    </div>
 
+    <h4>Previous Year</h4>
+    <div class="gallery-grid">
+      <img src="{% static 'images/f2.jpg' %}" alt="Kick Stars - Previous Year" />
+      <img src="{% static 'images/f4.jpg' %}" alt="Previous Football Winner" />
+      <!-- More previous football images -->
     </div>
   </section>
 

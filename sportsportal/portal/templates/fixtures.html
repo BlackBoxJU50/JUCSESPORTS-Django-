@@ -109,6 +109,9 @@
             <li><a href="{% url 'register' %}">Register</a></li>
             <li><a href="{% url 'ranking' %}">Ranking</a></li>
             <li><a href="{% url 'gallery' %}">Gallery</a></li>
+            <li><a href="{% url 'inventory' %}">InVeNtOrY</a></li>
+            <li><a href="{% url 'donation' %}">Donate</a></li>
+
             <li><a href="https://juniv.edu/department/cse">About</a></li>
         </ul>
     </nav>
@@ -125,7 +128,7 @@
                 <option value="Cricket" {% if game == "Cricket" %}selected{% endif %}>Cricket</option>
                 <option value="Football" {% if game == "Football" %}selected{% endif %}>Football</option>
             </select>
-            <button type="submit">Submit</button>
+            
         </form>
     </div>
 
